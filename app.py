@@ -1,15 +1,14 @@
 from fastapi import FastAPI
 import uvicorn
 import google.generativeai as ai
-
-API_KEY = 'AIzaSyD7qu7lAPz-zeyvXBhcAL5E_Q6L3Ock4qs'
+from config import API_KEY
 
 ai.configure(api_key=API_KEY)
 model = ai.GenerativeModel("gemini-pro")
+
 chat = model.start_chat()
 
 app = FastAPI()
-
 
 @app.post('/chat-bot/send-message')
 def sendMessage(message: str = None):
